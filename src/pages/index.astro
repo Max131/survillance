@@ -49,7 +49,11 @@ const videos = [
       </article>
 
       <ul class="list bg-base-100 rounded-box shadow-md mb-8" data-vlist>
-        <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">Recent videos</li>
+        <li
+          class="list-row p-4 pb-2 text-xs opacity-60 tracking-wide flex justify-between">
+          <div>Recent videos</div>
+          <div><a href="/security/view/">View cam</a></div>
+        </li>
         {
           videos.map((video) => (
             <li class="list-row">
