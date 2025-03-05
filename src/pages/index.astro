@@ -2,7 +2,7 @@
 import "../styles/global.css";
 import "plyr/dist/plyr.css";
 
-import { Play } from "lucide-astro";
+import { Play, Download } from "lucide-astro";
 
 const videos = [
   {
@@ -57,33 +57,45 @@ const videos = [
         {
           videos.map((video) => (
             <li class="list-row">
-              <div>
-                <img
-                  class="w-30 h-auto rounded-box"
-                  src={video.cover}
-                  loading="lazy"
-                  alt="Video preview"
-                />
+              <div class="flex gap-4">
+                <div>
+                  <img
+                    class="w-30 h-auto rounded-box"
+                    src={video.cover}
+                    loading="lazy"
+                    alt="Video preview"
+                  />
+                </div>
+                <div>
+                  <p>CAM: {video.cam}</p>
+                  <p>
+                    <time class="text-xs" datetime={video.date}>
+                      {video.date}
+                    </time>
+                  </p>
+                  <p>
+                    <time class="text-xs" datetime={video.date}>
+                      {video.time}
+                    </time>
+                  </p>
+                </div>
               </div>
-              <div>
-                <p>CAM: {video.cam}</p>
-                <p>
-                  <time class="text-xs" datetime={video.date}>
-                    {video.date}
-                  </time>
-                </p>
-                <p>
-                  <time class="text-xs" datetime={video.date}>
-                    {video.time}
-                  </time>
-                </p>
+              <div class="flex flex-col gap-2 items-end">
+                <button
+                  class="btn btn-sm btn-info btn-soft hover:text-white"
+                  aria-label="Reproducir video"
+                  data-video={video.url}>
+                  <Play />
+                </button>
+                <a
+                  class="btn btn-sm btn-info btn-soft hover:text-white"
+                  aria-label="Descargar video"
+                  download={`${video.date}.webm`}
+                  target="_blank"
+                  href={video.url}>
+                  <Download />
+                </a>
               </div>
-              <button
-                class="btn btn-info btn-soft hover:text-white self-end"
-                aria-label="Reproducir video"
-                data-video={video.url}>
-                <Play />
-              </button>
             </li>
           ))
         }
