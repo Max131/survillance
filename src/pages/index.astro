@@ -4,7 +4,7 @@ import "plyr/dist/plyr.css";
 
 import { Play, Download } from "lucide-astro";
 
-const videos = [
+/* const videos = [
   {
     cam: "1",
     date: "2024-12-30",
@@ -26,7 +26,7 @@ const videos = [
     url: "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
     cover: "https://placehold.co/320x240?text=video+3",
   },
-];
+]; */
 ---
 
 <html lang="en">
@@ -48,13 +48,13 @@ const videos = [
         </video>
       </article>
 
-      <ul class="list bg-base-100 rounded-box shadow-md mb-8" data-vlist>
+      <ul class="list bg-base-100 rounded-box shadow-md mb-8" data-videolist>
         <li
           class="list-row p-4 pb-2 text-xs opacity-60 tracking-wide flex justify-between">
           <div>Recent videos</div>
           <div><a href="/security/view/">View cam</a></div>
         </li>
-        {
+        <!-- {
           videos.map((video) => (
             <li class="list-row">
               <div class="flex gap-4">
@@ -98,9 +98,51 @@ const videos = [
               </div>
             </li>
           ))
-        }
+        } -->
       </ul>
     </main>
+    <template id="element-list">
+      <li class="list-row">
+        <div class="flex gap-4">
+          <div>
+            <img
+              class="w-30 h-auto rounded-box"
+              src=""
+              loading="lazy"
+              alt="Video preview"
+              data-image
+            />
+          </div>
+          <div>
+            <p><span class="font-semibold" data-cam></span></p>
+            <p>
+              <time class="text-xs" datetime="" data-date> </time>
+            </p>
+            <p>
+              <time class="text-xs" datetime="" data-time> </time>
+            </p>
+          </div>
+        </div>
+        <div class="flex flex-col gap-2 items-end">
+          <button
+            class="btn btn-sm btn-square btn-info btn-soft hover:text-white"
+            aria-label="Reproducir video"
+            data-video=""
+            data-play>
+            <Play />
+          </button>
+          <a
+            class="btn btn-sm btn-square btn-info btn-soft hover:text-white"
+            aria-label="Descargar video"
+            download
+            target="_blank"
+            href=""
+            data-download>
+            <Download />
+          </a>
+        </div>
+      </li>
+    </template>
   </body>
 </html>
 
@@ -120,7 +162,7 @@ const videos = [
       ratio: "16:9",
     });
 
-    const VIDEO_LIST = document.querySelector("[data-vlist]");
+    const VIDEO_LIST = document.querySelector("[data-videolist]");
 
     VIDEO_LIST?.addEventListener("click", ({ target }) => {
       const button = target.closest("[data-video]");
@@ -141,5 +183,35 @@ const videos = [
 
       player.play();
     });
+
+    const API_ENDPOINT = "http://localhost/cam/api.php";
+    const BASE_URL = "http://localhost/cam/files/";
+    const template = document.querySelector("#element-list");
+
+    fetch(API_ENDPOINT)
+      .then((res) => res.json())
+      .then((data) => {
+        data.files.forEach((item) => {
+          const cam = item.video.split("_")[0];
+          const date = item.video.split("T")[0].split("_").at(-1);
+          const time = item.video
+            .split("T")[1]
+            .split(".")[0]
+            .replaceAll("-", ":");
+          const li = template.content;
+
+          li.querySelector("[data-cam]").textContent = cam;
+          li.querySelector("[data-date]").textContent = date;
+          li.querySelector("[data-time]").textContent = time;
+          li.querySelector("[data-image]").src = `${BASE_URL}${item.cover}`;
+          li.querySelector("[data-video]").dataset.video =
+            `${BASE_URL}${item.video}`;
+          li.querySelector("[data-download]").href = `${BASE_URL}${item.video}`;
+
+          const clone = document.importNode(li, true);
+          VIDEO_LIST?.append(clone);
+        });
+      })
+      .catch((err) => console.log(err));
   });
 </script>
