@@ -3,6 +3,7 @@ import "../styles/global.css";
 import "plyr/dist/plyr.css";
 
 import { Play, Download } from "lucide-astro";
+import Poster from "@images/vp.webp";
 
 /* const videos = [
   {
@@ -40,11 +41,12 @@ import { Play, Download } from "lucide-astro";
   <body>
     <main class="max-w-[40rem] mx-auto px-4 lg:px-0">
       <article class="py-4 sticky top-0 z-1">
-        <video controls playsinline class="aspect-video">
-          <source
-            src="https://freetestdata.com/wp-content/uploads/2022/02/Free_Test_Data_1MB_MP4.mp4"
-            type="video/mp4"
-          />
+        <video
+          controls
+          playsinline
+          class="aspect-video"
+          data-poster={Poster.src}>
+          <source />
         </video>
       </article>
 
