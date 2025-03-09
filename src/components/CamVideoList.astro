@@ -4,13 +4,13 @@ import { Play, Download } from "lucide-astro";
 import Poster from "@images/vp.webp";
 ---
 
-<article class="sticky top-0 z-10 pt-4 border bg-base-100">
+<article class="sticky top-0 z-10 pt-4 bg-base-100">
   <video controls playsinline class="aspect-video" data-poster={Poster.src}>
     <source />
   </video>
 </article>
 
-<ul class="list mt-4 mb-8 bg-base-100 rounded-box shadow-md" data-videolist>
+<ul class="list mt-4 mb-8 bg-base-100 rounded-box shadow-md">
   <li
     class="list-row p-4 pb-2 text-xs opacity-60 tracking-wide flex justify-between">
     <div>Recent videos</div>
@@ -20,11 +20,12 @@ import Poster from "@images/vp.webp";
   <li class="list-row">
     <div>
       <img
-        class="w-30 h-auto rounded-box"
-        src={Poster.src}
+        class="w-30 h-auto rounded-box skeleton aspect-video object-cover"
         loading="lazy"
         alt="Video preview"
-        data-image
+        x-data
+        @load="$el.classList.remove('skeleton')"
+        @error="$el.classList.remove('skeleton')"
       />
     </div>
     <div>
@@ -57,7 +58,7 @@ import Poster from "@images/vp.webp";
   </li>
 </ul>
 
-<!-- <script>
+<script>
   import Plyr from "plyr";
 
   document.addEventListener("DOMContentLoaded", () => {
@@ -73,16 +74,16 @@ import Poster from "@images/vp.webp";
       ratio: "16:9",
     });
 
-    player.source = {
-      type: "video",
-      title: "Security video",
-      sources: [
-        {
-          src: button.dataset.video,
-        },
-      ],
-    };
-
-    player.play();
+    // player.source = {
+    //   type: "video",
+    //   title: "Security video",
+    //   sources: [
+    //     {
+    //       src: button.dataset.video,
+    //     },
+    //   ],
+    // };
+    //
+    // player.play();
   });
-</script> -->
+</script>
