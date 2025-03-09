@@ -57,8 +57,7 @@ import Poster from "@images/vp.webp";
           <button
             class="btn btn-sm btn-square btn-info btn-soft hover:text-white"
             aria-label="Reproducir video"
-            data-video=""
-            data-play>
+            @click="playVideo(video)">
             <!-- <Play /> -->
           </button>
         </div>
@@ -68,33 +67,19 @@ import Poster from "@images/vp.webp";
 </div>
 
 <script>
-  // import Plyr from "plyr";
-  //
-  // document.addEventListener("DOMContentLoaded", () => {
-  //   const player = new Plyr("video", {
-  //     controls: [
-  //       "play",
-  //       "progress",
-  //       "current-time",
-  //       "settings",
-  //       "pip",
-  //       "fullscreen",
-  //     ],
-  //     ratio: "16:9",
-  //   });
-  //
-  // player.source = {
-  //   type: "video",
-  //   title: "Security video",
-  //   sources: [
-  //     {
-  //       src: button.dataset.video,
-  //     },
-  //   ],
-  // };
-  //
-  // player.play();
-  // });
+  import Plyr from "plyr";
+
+  const player = new Plyr("video", {
+    controls: [
+      "play",
+      "progress",
+      "current-time",
+      "settings",
+      "pip",
+      "fullscreen",
+    ],
+    ratio: "16:9",
+  });
 
   Alpine.data("videoList", () => ({
     isLoading: true,
@@ -109,6 +94,19 @@ import Poster from "@images/vp.webp";
         .finally(() => {
           this.isLoading = false;
         });
+    },
+    playVideo(video) {
+      player.source = {
+        type: "video",
+        title: "Security video",
+        sources: [
+          {
+            src: `${this.basePath}${video}`,
+          },
+        ],
+      };
+
+      player.play();
     },
   }));
 </script>
