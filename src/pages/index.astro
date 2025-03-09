@@ -1,138 +1,47 @@
 ---
+import Layout from "@layouts/Default.astro";
 import "../styles/global.css";
 import "plyr/dist/plyr.css";
 
 import { Play, Download } from "lucide-astro";
 import Poster from "@images/vp.webp";
-
-/* const videos = [
-  {
-    cam: "1",
-    date: "2024-12-30",
-    time: "6:32 p.m.",
-    url: "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
-    cover: "https://placehold.co/320x240?text=video+1",
-  },
-  {
-    cam: "3",
-    date: "2025-03-01",
-    time: "11:32 p.m.",
-    url: "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
-    cover: "https://placehold.co/320x240?text=video+2",
-  },
-  {
-    cam: "2",
-    date: "2025-02-11",
-    time: "8:15 a.m.",
-    url: "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
-    cover: "https://placehold.co/320x240?text=video+3",
-  },
-]; */
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/security/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Secure Cams</title>
-  </head>
-  <body>
-    <main class="max-w-[40rem] mx-auto px-4 lg:px-0">
-      <article class="py-4 sticky top-0 z-1">
-        <video
-          controls
-          playsinline
-          class="aspect-video"
-          data-poster={Poster.src}>
-          <source />
-        </video>
-      </article>
+<Layout>
+  <div class="max-w-[40rem] mx-auto px-4 lg:px-0">
+    <article class="">
+      <video controls playsinline class="aspect-video" data-poster={Poster.src}>
+        <source />
+      </video>
+    </article>
 
-      <ul class="list bg-base-100 rounded-box shadow-md mb-8" data-videolist>
-        <li
-          class="list-row p-4 pb-2 text-xs opacity-60 tracking-wide flex justify-between">
-          <div>Recent videos</div>
-          <div><a href="/security/view/">View cam</a></div>
-        </li>
-        <!-- {
-          videos.map((video) => (
-            <li class="list-row">
-              <div class="flex gap-4">
-                <div>
-                  <img
-                    class="w-30 h-auto rounded-box"
-                    src={video.cover}
-                    loading="lazy"
-                    alt="Video preview"
-                  />
-                </div>
-                <div>
-                  <p>CAM: {video.cam}</p>
-                  <p>
-                    <time class="text-xs" datetime={video.date}>
-                      {video.date}
-                    </time>
-                  </p>
-                  <p>
-                    <time class="text-xs" datetime={video.date}>
-                      {video.time}
-                    </time>
-                  </p>
-                </div>
-              </div>
-              <div class="flex flex-col gap-2 items-end">
-                <button
-                  class="btn btn-sm btn-square btn-info btn-soft hover:text-white"
-                  aria-label="Reproducir video"
-                  data-video={video.url}>
-                  <Play />
-                </button>
-                <a
-                  class="btn btn-sm btn-square btn-info btn-soft hover:text-white"
-                  aria-label="Descargar video"
-                  download={`${video.date}.webm`}
-                  target="_blank"
-                  href={video.url}>
-                  <Download />
-                </a>
-              </div>
-            </li>
-          ))
-        } -->
-      </ul>
-    </main>
-    <template id="element-list">
+    <ul class="list bg-base-100 rounded-box shadow-md mb-8" data-videolist>
+      <li
+        class="list-row p-4 pb-2 text-xs opacity-60 tracking-wide flex justify-between">
+        <div>Recent videos</div>
+        <div><a href="/security/view/">View cam</a></div>
+      </li>
+
       <li class="list-row">
-        <div class="flex gap-4">
-          <div>
-            <img
-              class="w-30 h-auto rounded-box"
-              src=""
-              loading="lazy"
-              alt="Video preview"
-              data-image
-            />
-          </div>
-          <div>
-            <p><span class="font-semibold" data-cam></span></p>
-            <p>
-              <time class="text-xs" datetime="" data-date> </time>
-            </p>
-            <p>
-              <time class="text-xs" datetime="" data-time> </time>
-            </p>
-          </div>
+        <div>
+          <img
+            class="w-30 h-auto rounded-box"
+            src={Poster.src}
+            loading="lazy"
+            alt="Video preview"
+            data-image
+          />
         </div>
-        <div class="flex flex-col gap-2 items-end">
-          <button
-            class="btn btn-sm btn-square btn-info btn-soft hover:text-white"
-            aria-label="Reproducir video"
-            data-video=""
-            data-play>
-            <Play />
-          </button>
+        <div>
+          <p><span class="font-semibold">CAM: 01</span></p>
+          <p>
+            <time class="text-xs" datetime="">2025-03-09</time>
+          </p>
+          <p>
+            <time class="text-xs" datetime="">13:45:01</time>
+          </p>
+        </div>
+        <div class="flex gap-2 items-end">
           <a
             class="btn btn-sm btn-square btn-info btn-soft hover:text-white"
             aria-label="Descargar video"
@@ -142,13 +51,20 @@ import Poster from "@images/vp.webp";
             data-download>
             <Download />
           </a>
+          <button
+            class="btn btn-sm btn-square btn-info btn-soft hover:text-white"
+            aria-label="Reproducir video"
+            data-video=""
+            data-play>
+            <Play />
+          </button>
         </div>
       </li>
-    </template>
-  </body>
-</html>
+    </ul>
+  </div>
+</Layout>
 
-<script>
+<!-- <script>
   import Plyr from "plyr";
 
   document.addEventListener("DOMContentLoaded", () => {
@@ -164,56 +80,16 @@ import Poster from "@images/vp.webp";
       ratio: "16:9",
     });
 
-    const VIDEO_LIST = document.querySelector("[data-videolist]");
+    player.source = {
+      type: "video",
+      title: "Security video",
+      sources: [
+        {
+          src: button.dataset.video,
+        },
+      ],
+    };
 
-    VIDEO_LIST?.addEventListener("click", ({ target }) => {
-      const button = target.closest("[data-video]");
-
-      if (!button) {
-        return;
-      }
-
-      player.source = {
-        type: "video",
-        title: "Security video",
-        sources: [
-          {
-            src: button.dataset.video,
-          },
-        ],
-      };
-
-      player.play();
-    });
-
-    const API_ENDPOINT = "http://localhost/cam/api.php";
-    const BASE_URL = "http://localhost/cam/files/";
-    const template = document.querySelector("#element-list");
-
-    fetch(API_ENDPOINT)
-      .then((res) => res.json())
-      .then((data) => {
-        data.files.forEach((item) => {
-          const cam = item.video.split("_")[0];
-          const date = item.video.split("T")[0].split("_").at(-1);
-          const time = item.video
-            .split("T")[1]
-            .split(".")[0]
-            .replaceAll("-", ":");
-          const li = template.content;
-
-          li.querySelector("[data-cam]").textContent = cam;
-          li.querySelector("[data-date]").textContent = date;
-          li.querySelector("[data-time]").textContent = time;
-          li.querySelector("[data-image]").src = `${BASE_URL}${item.cover}`;
-          li.querySelector("[data-video]").dataset.video =
-            `${BASE_URL}${item.video}`;
-          li.querySelector("[data-download]").href = `${BASE_URL}${item.video}`;
-
-          const clone = document.importNode(li, true);
-          VIDEO_LIST?.append(clone);
-        });
-      })
-      .catch((err) => console.log(err));
+    player.play();
   });
-</script>
+</script> -->
