@@ -1,95 +1,46 @@
 ---
 import Layout from "@layouts/Default.astro";
-import "../styles/global.css";
-import "plyr/dist/plyr.css";
-
-import { Play, Download } from "lucide-astro";
-import Poster from "@images/vp.webp";
+import CamVideoList from "@components/CamVideoList.astro";
 ---
 
-<Layout>
-  <div class="max-w-[40rem] mx-auto px-4 lg:px-0">
-    <article class="">
-      <video controls playsinline class="aspect-video" data-poster={Poster.src}>
-        <source />
-      </video>
-    </article>
-
-    <ul class="list bg-base-100 rounded-box shadow-md mb-8" data-videolist>
-      <li
-        class="list-row p-4 pb-2 text-xs opacity-60 tracking-wide flex justify-between">
-        <div>Recent videos</div>
-        <div><a href="/security/view/">View cam</a></div>
-      </li>
-
-      <li class="list-row">
-        <div>
-          <img
-            class="w-30 h-auto rounded-box"
-            src={Poster.src}
-            loading="lazy"
-            alt="Video preview"
-            data-image
-          />
-        </div>
-        <div>
-          <p><span class="font-semibold">CAM: 01</span></p>
-          <p>
-            <time class="text-xs" datetime="">2025-03-09</time>
-          </p>
-          <p>
-            <time class="text-xs" datetime="">13:45:01</time>
-          </p>
-        </div>
-        <div class="flex gap-2 items-end">
-          <a
-            class="btn btn-sm btn-square btn-info btn-soft hover:text-white"
-            aria-label="Descargar video"
-            download
-            target="_blank"
-            href=""
-            data-download>
-            <Download />
-          </a>
-          <button
-            class="btn btn-sm btn-square btn-info btn-soft hover:text-white"
-            aria-label="Reproducir video"
-            data-video=""
-            data-play>
-            <Play />
-          </button>
-        </div>
-      </li>
-    </ul>
+<Layout title="Survillance">
+  <div class="max-w-3xl mx-auto px-4 md:px-0 py-4">
+    <h1 class="text-3xl font-weight">Kitcam survillance</h1>
+    <CamVideoList />
+    <p class="my-4">
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita
+      corrupti mollitia placeat, minima ex aut accusantium similique earum
+      cumque dolores dolorum necessitatibus, nisi consequatur quia aliquid sint.
+      Nulla, ducimus tempore.
+    </p>
+    <p class="my-4">
+      Provident praesentium animi aliquam, tempore eaque dicta voluptatum
+      obcaecati nam similique, doloribus natus voluptatem? Maxime repellendus
+      facere, perspiciatis iste voluptatum hic, qui itaque, nostrum expedita
+      tempore quaerat similique voluptate ipsam?
+    </p>
+    <p class="my-4">
+      Aspernatur voluptatum impedit soluta earum quam sequi tenetur odio, alias
+      harum eaque eveniet voluptatem praesentium cum incidunt nisi, temporibus
+      eum rem. Quas dolorum voluptatum ratione alias quibusdam cumque mollitia
+      molestias.
+    </p>
+    <p class="my-4">
+      Facere nostrum, est eum suscipit maiores quod vero quo animi voluptatem
+      atque quia voluptatibus eaque ducimus facilis enim consectetur ex deleniti
+      molestias! Consequuntur aspernatur, velit nostrum necessitatibus odio
+      sint? Exercitationem!
+    </p>
+    <p class="my-4">
+      Aliquam molestias deleniti vero praesentium hic perspiciatis repudiandae
+      dignissimos enim, minus quaerat illo quae maiores voluptate laudantium
+      soluta. Suscipit nisi ex similique eveniet! Eius similique praesentium
+      blanditiis rerum, totam commodi.
+    </p>
+    <p class="my-4">
+      Distinctio doloribus, quo a amet voluptates vero. Sed aspernatur earum
+      iure veniam vel numquam, enim ut corrupti quod, provident ad distinctio
+      delectus iste impedit fugiat et repudiandae eos dolores. Beatae.
+    </p>
   </div>
 </Layout>
-
-<!-- <script>
-  import Plyr from "plyr";
-
-  document.addEventListener("DOMContentLoaded", () => {
-    const player = new Plyr("video", {
-      controls: [
-        "play",
-        "progress",
-        "current-time",
-        "settings",
-        "pip",
-        "fullscreen",
-      ],
-      ratio: "16:9",
-    });
-
-    player.source = {
-      type: "video",
-      title: "Security video",
-      sources: [
-        {
-          src: button.dataset.video,
-        },
-      ],
-    };
-
-    player.play();
-  });
-</script> -->
