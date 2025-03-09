@@ -12,10 +12,10 @@ export default defineConfig({
 
   build: {
     assets: 'assets',
-    assetsPrefix: {
-      'css': 'css/',
-      'fallback': '/'
-    },
+    // assetsPrefix: {
+    //   'css': 'css/',
+    //   'fallback': '/'
+    // },
     inlineStylesheets: 'never'
   },
 
