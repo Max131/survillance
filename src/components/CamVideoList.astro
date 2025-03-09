@@ -1,6 +1,6 @@
 ---
 import "plyr/dist/plyr.css";
-// import { Play, Download } from "lucide-astro";
+import { Play, Download } from "lucide-astro";
 import Poster from "@images/vp.webp";
 ---
 
@@ -50,15 +50,14 @@ import Poster from "@images/vp.webp";
             aria-label="Descargar video"
             download
             target="_blank"
-            href=""
-            data-download>
-            <!-- <Download /> -->
+            :href="`${basePath}${video}`">
+            <Download />
           </a>
           <button
             class="btn btn-sm btn-square btn-info btn-soft hover:text-white"
             aria-label="Reproducir video"
             @click="playVideo(video)">
-            <!-- <Play /> -->
+            <Play />
           </button>
         </div>
       </li>
