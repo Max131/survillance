@@ -8,3 +8,7 @@
   border-radius: 0.5em;
   box-shadow: 0 0 20px -4px;
 }
+
+[x-cloak]  {
+  display: none;
+}
