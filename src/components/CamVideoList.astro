@@ -4,65 +4,68 @@ import { Play, Download } from "lucide-astro";
 import Poster from "@images/vp.webp";
 ---
 
-<div x-data="videoList">
-  <article class="sticky top-0 z-10 pt-4 bg-base-100">
+<div class="landscape:flex" x-data="videoList">
+  <article class="sticky top-0 z-10 pt-4 bg-base-100 landscape:grow-2">
     <video controls playsinline class="aspect-video" data-poster={Poster.src}>
       <source />
     </video>
   </article>
-  <span class="loading loading-dots loading-xl my-6" x-show="isLoading"></span>
 
-  <ul
-    class="list mt-4 mb-8 bg-base-100 rounded-box shadow-md"
-    x-show="!isLoading"
-    x-cloak>
-    <li
-      class="list-row p-4 pb-2 text-xs opacity-60 tracking-wide flex justify-between">
-      <div>Recent videos</div>
-      <div><a href="/security/view/">View cam</a></div>
-    </li>
+  <div class="my-5">
+    <span class="loading loading-dots loading-xl" x-show="isLoading"></span>
 
-    <template x-for="{video, cover} in list">
-      <li class="list-row focus-within:ring-2 focus-within:ring-info">
-        <div>
-          <img
-            class="w-30 h-auto rounded-box skeleton aspect-video object-cover"
-            loading="lazy"
-            :src="`${basePath}${cover}`"
-            alt="Video preview"
-            x-data
-            @load="$el.classList.remove('skeleton')"
-            @error="$el.classList.remove('skeleton')"
-          />
-        </div>
-        <div>
-          <p><span class="font-semibold">CAM: 01</span></p>
-          <p>
-            <time class="text-xs" datetime="">2025-03-09</time>
-          </p>
-          <p>
-            <time class="text-xs" datetime="">13:45:01</time>
-          </p>
-        </div>
-        <div class="flex gap-2 items-end">
-          <a
-            class="btn btn-sm btn-square btn-info btn-soft hover:text-white"
-            aria-label="Descargar video"
-            download
-            target="_blank"
-            :href="`${basePath}${video}`">
-            <Download />
-          </a>
-          <button
-            class="btn btn-sm btn-square btn-info btn-soft hover:text-white"
-            aria-label="Reproducir video"
-            @click="playVideo(video)">
-            <Play />
-          </button>
-        </div>
+    <ul
+      class="list mb-8 bg-base-100 rounded-box shadow-md landscape:mx-2"
+      x-show="!isLoading"
+      x-cloak>
+      <li
+        class="list-row p-4 pb-2 text-xs opacity-60 tracking-wide flex justify-between">
+        <div>Recent videos</div>
+        <div><a href="/security/view/">View cam</a></div>
       </li>
-    </template>
-  </ul>
+
+      <template x-for="{video, cover} in list">
+        <li class="list-row focus-within:ring-2 focus-within:ring-info">
+          <div>
+            <img
+              class="w-30 h-auto rounded-box skeleton aspect-video object-cover"
+              loading="lazy"
+              :src="`${basePath}${cover}`"
+              alt="Video preview"
+              x-data
+              @load="$el.classList.remove('skeleton')"
+              @error="$el.classList.remove('skeleton')"
+            />
+          </div>
+          <div>
+            <p><span class="font-semibold">CAM: 01</span></p>
+            <p>
+              <time class="text-xs" datetime="">2025-03-09</time>
+            </p>
+            <p>
+              <time class="text-xs" datetime="">13:45:01</time>
+            </p>
+          </div>
+          <div class="flex gap-2 items-end">
+            <a
+              class="btn btn-sm btn-square btn-info btn-soft hover:text-white"
+              aria-label="Descargar video"
+              download
+              target="_blank"
+              :href="`${basePath}${video}`">
+              <Download />
+            </a>
+            <button
+              class="btn btn-sm btn-square btn-info btn-soft hover:text-white"
+              aria-label="Reproducir video"
+              @click="playVideo(video)">
+              <Play />
+            </button>
+          </div>
+        </li>
+      </template>
+    </ul>
+  </div>
 </div>
 
 <script>
