@@ -13,13 +13,16 @@ import "../styles/global.css";
   <body>
     <main class="max-w-[40rem] mx-auto px-4 lg:px-0">
       <h1 class="text-2xl text-neutral-600 font-bold mt-4">Vista de cámara</h1>
-      <article class="py-4">
+      <article class="py-4" x-data>
         <img
           src="https://cams.mabreumx.com/101"
-          class="aspect-video rounded-box shadow-md"
+          class="skeleton aspect-video rounded-box shadow-md my-4"
           alt="Vista de cámara"
+          @load="$el.classList.remove('skeleton')"
+          @error="$el.classList.remove('skeleton'); $el.alt = 'Cámara no disponible'"
         />
       </article>
+      <a class="link" href="../">Regresar al listado</a>
     </main>
   </body>
 </html>
