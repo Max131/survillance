@@ -17,6 +17,13 @@ import Poster from "@images/vp.webp";
       <span class="loading loading-dots loading-xl text-info mx-auto"></span>
     </div>
 
+    <p class="alert alert-error alert-soft my-5" role="alert" x-show="hasError">
+      Error al cargar, intenta <button
+        class="btn btn-sm btn-error btn-outline"
+        @click="loadVideos">recargar</button
+      >
+    </p>
+
     <ul class="list mb-8 bg-base-100" x-show="!isLoading" x-cloak>
       <li class="list-row p-4 pb-2 text-xs tracking-wide flex justify-between">
         <p>Recent videos</p>
@@ -87,6 +94,7 @@ import Poster from "@images/vp.webp";
 
   Alpine.data("videoList", () => ({
     isLoading: false,
+    hasError: false,
     basePath: import.meta.env.PUBLIC_BASE_PATH,
     list: [],
     init() {
@@ -95,10 +103,15 @@ import Poster from "@images/vp.webp";
     },
     loadVideos() {
       this.isLoading = true;
+      this.hasError = false;
       fetch(import.meta.env.PUBLIC_VIDEO_LIST_API)
         .then((res) => res.json())
         .then((data) => {
           this.list = data.files;
+        })
+        .catch((err) => {
+          this.hasError = true;
+          console.log(err);
         })
         .finally(() => {
           this.isLoading = false;
