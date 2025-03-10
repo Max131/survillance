@@ -20,7 +20,9 @@ import Poster from "@images/vp.webp";
     <ul class="list mb-8 bg-base-100" x-show="!isLoading" x-cloak>
       <li class="list-row p-4 pb-2 text-xs tracking-wide flex justify-between">
         <p>Recent videos</p>
-        <button class="opacity-60 cursor-pointer">Reload list</button>
+        <button class="opacity-60 cursor-pointer" @click="loadVideos"
+          >Reload list</button
+        >
         <a class="opacity-60" href="/security/view/">View cam</a>
       </li>
 
@@ -84,10 +86,15 @@ import Poster from "@images/vp.webp";
   });
 
   Alpine.data("videoList", () => ({
-    isLoading: true,
+    isLoading: false,
     basePath: import.meta.env.PUBLIC_BASE_PATH,
     list: [],
     init() {
+      this.isLoading = true;
+      this.loadVideos();
+    },
+    loadVideos() {
+      this.isLoading = true;
       fetch(import.meta.env.PUBLIC_VIDEO_LIST_API)
         .then((res) => res.json())
         .then((data) => {
