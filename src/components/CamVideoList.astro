@@ -19,7 +19,11 @@ import Poster from "@images/vp.webp";
       <span class="loading loading-dots loading-xl text-info mx-auto"></span>
     </div>
 
-    <p class="alert alert-error alert-soft my-5" role="alert" x-show="hasError">
+    <p
+      class="alert alert-error alert-soft my-5"
+      role="alert"
+      x-show="hasError"
+      x-cloak>
       Error al cargar, intenta <button
         class="btn btn-sm btn-error btn-outline"
         @click="loadVideos">recargar</button
