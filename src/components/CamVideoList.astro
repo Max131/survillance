@@ -5,13 +5,14 @@ import Poster from "@images/vp.webp";
 ---
 
 <div class="landscape:flex landscape:gap-4" x-data="videoList">
-  <article class="sticky top-0 z-10 pt-5 bg-base-100 landscape:grow-2">
+  <article
+    class="sticky top-0 z-10 pt-5 bg-base-100 landscape:grow-2 landscape:w-3/5">
     <video controls playsinline class="aspect-video" data-poster={Poster.src}>
       <source />
     </video>
   </article>
 
-  <div class="portrait:my-5 grow-1">
+  <div class="portrait:my-5 landscape:grow-1">
     <div class="flex justify-center py-4" x-show="isLoading">
       <span class="loading loading-dots loading-xl text-info mx-auto"></span>
     </div>
