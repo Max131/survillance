@@ -17,10 +17,10 @@ import Poster from "@images/vp.webp";
     </div>
 
     <ul class="list mb-8 bg-base-100" x-show="!isLoading" x-cloak>
-      <li
-        class="list-row p-4 pb-2 text-xs opacity-60 tracking-wide flex justify-between">
-        <div>Recent videos</div>
-        <div><a href="/security/view/">View cam</a></div>
+      <li class="list-row p-4 pb-2 text-xs tracking-wide flex justify-between">
+        <p>Recent videos</p>
+        <button class="opacity-60 cursor-pointer">Reload list</button>
+        <a class="opacity-60" href="/security/view/">View cam</a>
       </li>
 
       <template x-for="{video, cover} in list">
