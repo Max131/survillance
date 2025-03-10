@@ -4,7 +4,9 @@ import { Play, Download } from "lucide-astro";
 import Poster from "@images/vp.webp";
 ---
 
-<div class="landscape:flex landscape:gap-4" x-data="videoList">
+<div
+  class="landscape:flex landscape:items-start landscape:gap-4"
+  x-data="videoList">
   <article
     class="sticky top-0 z-10 pt-5 bg-base-100 landscape:grow-2 landscape:w-3/5">
     <video controls playsinline class="aspect-video" data-poster={Poster.src}>
