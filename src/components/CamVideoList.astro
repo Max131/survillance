@@ -4,20 +4,19 @@ import { Play, Download } from "lucide-astro";
 import Poster from "@images/vp.webp";
 ---
 
-<div class="landscape:flex" x-data="videoList">
-  <article class="sticky top-0 z-10 pt-4 bg-base-100 landscape:grow-2">
+<div class="landscape:flex landscape:gap-4" x-data="videoList">
+  <article class="sticky top-0 z-10 pt-5 bg-base-100 landscape:grow-2">
     <video controls playsinline class="aspect-video" data-poster={Poster.src}>
       <source />
     </video>
   </article>
 
-  <div class="my-5">
-    <span class="loading loading-dots loading-xl" x-show="isLoading"></span>
+  <div class="portrait:my-5">
+    <div class="flex justify-center py-4" x-show="isLoading">
+      <span class="loading loading-dots loading-xl mx-auto"></span>
+    </div>
 
-    <ul
-      class="list mb-8 bg-base-100 rounded-box shadow-md landscape:mx-2"
-      x-show="!isLoading"
-      x-cloak>
+    <ul class="list mb-8 bg-base-100" x-show="!isLoading" x-cloak>
       <li
         class="list-row p-4 pb-2 text-xs opacity-60 tracking-wide flex justify-between">
         <div>Recent videos</div>

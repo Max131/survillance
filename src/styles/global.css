@@ -6,7 +6,7 @@
 
 .plyr {
   border-radius: 0.5em;
-  box-shadow: 0 0 20px -4px;
+  box-shadow: 0 0 16px -4px #0009;
 }
 
 [x-cloak]  {
