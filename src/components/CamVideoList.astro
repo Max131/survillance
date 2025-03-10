@@ -15,10 +15,6 @@ import Poster from "@images/vp.webp";
   </article>
 
   <div class="portrait:my-5 landscape:md:col-span-2">
-    <div class="flex justify-center py-8" x-show="isLoading">
-      <span class="loading loading-dots loading-xl text-info mx-auto"></span>
-    </div>
-
     <p
       class="alert alert-error alert-soft my-5"
       role="alert"
@@ -30,7 +26,7 @@ import Poster from "@images/vp.webp";
       >
     </p>
 
-    <ul class="list mb-8 bg-base-100" x-show="!isLoading" x-cloak>
+    <ul class="list mb-8 bg-base-100" x-cloak>
       <li class="list-row p-4 pb-2 text-xs tracking-wide flex justify-between">
         <p>Recent videos</p>
         <button class="opacity-60 cursor-pointer" @click="loadVideos"
@@ -38,46 +34,56 @@ import Poster from "@images/vp.webp";
         >
         <a class="opacity-60" href="/security/view/">View live</a>
       </li>
+      <li>
+        <div class="flex justify-center py-8" x-show="isLoading">
+          <span class="loading loading-dots loading-xl text-info mx-auto"
+          ></span>
+        </div>
+      </li>
 
-      <template x-for="{video, cover} in list">
-        <li class="list-row focus-within:ring-2 focus-within:ring-info">
-          <div>
-            <img
-              class="w-30 h-auto rounded-box skeleton aspect-video object-cover"
-              loading="lazy"
-              :src="`${basePath}${cover}`"
-              alt="Video preview"
-              x-data
-              @load="$el.classList.remove('skeleton')"
-              @error="$el.classList.remove('skeleton')"
-            />
-          </div>
-          <div>
-            <p><span class="font-semibold">CAM: 01</span></p>
-            <p>
-              <time class="text-xs" datetime="">2025-03-09</time>
-            </p>
-            <p>
-              <time class="text-xs" datetime="">13:45:01</time>
-            </p>
-          </div>
-          <div class="flex gap-2 items-end">
-            <a
-              class="btn btn-sm btn-square btn-info btn-soft hover:text-white"
-              aria-label="Descargar video"
-              download
-              target="_blank"
-              :href="`${basePath}${video}`">
-              <Download />
-            </a>
-            <button
-              class="btn btn-sm btn-square btn-info btn-soft hover:text-white"
-              aria-label="Reproducir video"
-              @click="playVideo(video)">
-              <Play />
-            </button>
-          </div>
-        </li>
+      <template x-if="!isLoading">
+        <div class="contents">
+          <template x-for="{video, cover} in list">
+            <li class="list-row focus-within:ring-2 focus-within:ring-info">
+              <div>
+                <img
+                  class="w-30 h-auto rounded-box skeleton aspect-video object-cover"
+                  loading="lazy"
+                  :src="`${basePath}${cover}`"
+                  alt="Video preview"
+                  x-data
+                  @load="$el.classList.remove('skeleton')"
+                  @error="$el.classList.remove('skeleton')"
+                />
+              </div>
+              <div>
+                <p><span class="font-semibold">CAM: 01</span></p>
+                <p>
+                  <time class="text-xs" datetime="">2025-03-09</time>
+                </p>
+                <p>
+                  <time class="text-xs" datetime="">13:45:01</time>
+                </p>
+              </div>
+              <div class="flex gap-2 items-end">
+                <a
+                  class="btn btn-sm btn-square btn-info btn-soft hover:text-white"
+                  aria-label="Descargar video"
+                  download
+                  target="_blank"
+                  :href="`${basePath}${video}`">
+                  <Download />
+                </a>
+                <button
+                  class="btn btn-sm btn-square btn-info btn-soft hover:text-white"
+                  aria-label="Reproducir video"
+                  @click="playVideo(video)">
+                  <Play />
+                </button>
+              </div>
+            </li>
+          </template>
+        </div>
       </template>
     </ul>
   </div>
