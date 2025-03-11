@@ -1,0 +1,25 @@
+---
+import Layout from "@layouts/Default.astro";
+import { ArrowLeft } from "lucide-astro";
+---
+
+<Layout title="Live view CAM01">
+  <div class="max-w-4xl mx-auto px-4 md:px-0 py-4">
+    <h1 class="text-2xl text-neutral-600 font-bold mt-4">Live CAM</h1>
+    <article class="py-4" x-data>
+      <img
+        src="https://cams.mabreumx.com/101"
+        class="skeleton aspect-video rounded-box shadow-md my-4 flex justify-center items-center italic text-xl"
+        alt="Vista de cámara"
+        @load="$el.classList.remove('skeleton')"
+        @error="$el.classList.remove('skeleton'); $el.alt = 'Camera not avalaible'"
+      />
+    </article>
+    <div class="flex justify-end">
+      <a class="btn btn-info btn-soft" href="../">
+        <ArrowLeft size="16" />
+        Regresar</a
+      >
+    </div>
+  </div>
+</Layout>
