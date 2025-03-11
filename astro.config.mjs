@@ -9,7 +9,7 @@ export default defineConfig({
   site: 'https://webbolt.fast-page.org',
   base: '/security',
   compressHTML: false,
-
+  server: { port: 3000 },
   build: {
     assets: 'assets',
     // assetsPrefix: {

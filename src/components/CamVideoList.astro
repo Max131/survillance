@@ -57,12 +57,22 @@ import Poster from "@images/vp.webp";
                 />
               </div>
               <div>
-                <p><span class="font-semibold">CAM: 01</span></p>
                 <p>
-                  <time class="text-xs" datetime="">2025-03-09</time>
+                  <span class="font-semibold" x-text="video.split('_')[0]"
+                  ></span>
                 </p>
                 <p>
-                  <time class="text-xs" datetime="">13:45:01</time>
+                  <time
+                    class="text-xs"
+                    :datetime="video.split('_')[1].split('T')[0]"
+                    x-text="video.split('_')[1].split('T')[0]"></time>
+                </p>
+                <p>
+                  <time
+                    class="text-xs"
+                    :datetime="video.split('_')[1].split('T')[1].split('.')[0]"
+                    x-text="video.split('_')[1].split('T')[1].split('.')[0].replaceAll('-',':')"
+                  ></time>
                 </p>
               </div>
               <div class="flex gap-2 items-end">
