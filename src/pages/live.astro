@@ -9,7 +9,7 @@ import { ArrowLeft } from "lucide-astro";
     <article class="py-4" x-data>
       <img
         src="https://cams.mabreumx.com/101"
-        class="skeleton aspect-video rounded-box shadow-md my-4 flex justify-center items-center italic text-xl"
+        class="skeleton aspect-video rounded-box w-full shadow-md my-4 flex justify-center items-center italic text-xl"
         alt="Vista de cámara"
         @load="$el.classList.remove('skeleton')"
         @error="$el.classList.remove('skeleton'); $el.alt = 'Camera not avalaible'"
