@@ -1,0 +1,45 @@
+---
+
+---
+
+<div class="toast toast-end" x-data>
+  <template x-for="{id, message, type, isSoft} in $store.notification.toasts">
+    <article
+      class="alert"
+      :class="{[type]: true, 'alert-soft': isSoft}"
+      :id="id">
+      <p x-text="message"></p>
+    </article>
+  </template>
+</div>
+
+<script>
+  Alpine.store("notification", {
+    toasts: [],
+    create({
+      message = "",
+      type = "",
+      isSoft = false,
+      duration = 5000,
+      onCreate = () => {},
+      onDestroy = () => {},
+    }) {
+      const id = crypto.randomUUID();
+      console.log({ isSoft });
+
+      this.toasts.push({
+        id,
+        message,
+        type,
+        isSoft,
+      });
+
+      onCreate();
+
+      setTimeout(() => {
+        this.toasts = this.toasts.filter((toast) => toast.id !== id);
+        onDestroy();
+      }, duration);
+    },
+  });
+</script>
