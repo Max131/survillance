@@ -29,8 +29,10 @@ import Poster from "@images/vp.webp";
     <ul class="list mb-8 bg-base-100" x-cloak>
       <li class="list-row p-4 pb-2 text-xs tracking-wide flex justify-between">
         <p>Recent videos</p>
-        <button class="opacity-60 cursor-pointer" @click="loadVideos"
-          >Reload list</button
+        <button
+          class="opacity-60 cursor-pointer"
+          id="reloadBtn"
+          @click="loadVideos">Reload list</button
         >
         <a class="opacity-60" href="/security/live/">Live view</a>
       </li>

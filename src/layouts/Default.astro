@@ -20,3 +20,41 @@ const { title = "" } = Astro.props;
     <Notification />
   </body>
 </html>
+
+<script>
+  const notification = Alpine.store("notification");
+
+  const sse = new EventSource(import.meta.env.PUBLIC_SSE_SERVER);
+
+  sse.addEventListener("open", () => {
+    notification.create({
+      message: "Monitor initializated...",
+      type: "alert-info",
+      isSoft: true,
+    });
+  });
+
+  sse.addEventListener("error", () => {
+    notification.create({
+      message: "Error on monitor conection, trying again...",
+      type: "alert-error",
+      isSoft: true,
+    });
+  });
+
+  sse.addEventListener("fileAdded", (e) => {
+    const data = JSON.parse(e.data);
+    console.log(data);
+    const { files } = data;
+
+    files.forEach(({ name }) => {
+      notification.create({
+        message: `New file added: ${name}`,
+        type: "alert-info",
+      });
+    });
+
+    const $reloadButton = document.querySelector("#reloadBtn");
+    $reloadButton?.click();
+  });
+</script>
