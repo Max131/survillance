@@ -44,15 +44,14 @@ const { title = "" } = Astro.props;
 
   sse.addEventListener("fileAdded", (e) => {
     const data = JSON.parse(e.data);
-    console.log(data);
     const { files } = data;
 
-    files.forEach(({ name }) => {
+    if (files.length) {
       notification.create({
-        message: `New file added: ${name}`,
+        message: "New files added",
         type: "alert-info",
       });
-    });
+    }
 
     const $reloadButton = document.querySelector("#reloadBtn");
     $reloadButton?.click();
