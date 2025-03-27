@@ -1,6 +1,6 @@
 ---
 import "plyr/dist/plyr.css";
-import { Play, Download } from "lucide-astro";
+import { Play, Download, RotateCcw, Video } from "lucide-astro";
 import Poster from "@images/vp.webp";
 ---
 
@@ -30,11 +30,18 @@ import Poster from "@images/vp.webp";
       <li class="list-row p-4 pb-2 text-xs tracking-wide flex justify-between">
         <p>Recent videos</p>
         <button
-          class="opacity-60 cursor-pointer"
+          class="inline-flex gap-2 items-center opacity-60 cursor-pointer"
           id="reloadBtn"
-          @click="loadVideos">Reload list</button
-        >
-        <a class="opacity-60" href="/security/live/">Live view</a>
+          @click="loadVideos">
+          <span> Reload list </span>
+          <RotateCcw size="14" />
+        </button>
+        <a
+          class="inline-flex gap-2 items-center opacity-60"
+          href="/security/live/">
+          <span> Live view </span>
+          <Video size="16" />
+        </a>
       </li>
       <li>
         <div class="flex justify-center py-8" x-show="isLoading">
